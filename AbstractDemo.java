@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+// Abstract Class
+abstract class Employee {
+
+    int id;
+    String name;
+    double salary;
+
+    Employee(int i, String n, double s) {
+        id = i;
+        name = n;
+        salary = s;
+    }
+
+    // Abstract Method
+    abstract void calculateBonus();
+
+    // Normal Method
+    void display() {
+
+        System.out.println("\nEmployee ID: " + id);
+        System.out.println("Employee Name: " + name);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+// Subclass
+class Manager extends Employee {
+
+    Manager(int i, String n, double s) {
+        super(i, n, s);
+    }
+
+    // Implementing Abstract Method
+    void calculateBonus() {
+
+        double bonus = salary * 0.20;
+
+        System.out.println("Bonus: " + bonus);
+    }
+}
+
+public class AbstractDemo {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("===== ABSTRACT CLASS DEMO =====");
+
+        System.out.print("Enter Employee ID: ");
+        int id = sc.nextInt();
+
+        sc.nextLine();
+
+        System.out.print("Enter Employee Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Salary: ");
+        double salary = sc.nextDouble();
+
+        // Object of subclass
+        Manager m = new Manager(id, name, salary);
+
+        m.display();
+
+        m.calculateBonus();
+
+        sc.close();
+    }
+}

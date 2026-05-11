@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+// Superclass
+class Person {
+
+    String name;
+    int age;
+
+    void getPersonDetails(String n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void displayPersonDetails() {
+        System.out.println("\nName: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+// Subclass
+class Student extends Person {
+
+    int rollNo;
+
+    void getStudentDetails(int r) {
+        rollNo = r;
+    }
+
+    void displayStudentDetails() {
+        System.out.println("Roll Number: " + rollNo);
+    }
+}
+
+public class SingleInheritance {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Student s = new Student();
+
+        System.out.println("===== SINGLE INHERITANCE DEMO =====");
+
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Age: ");
+        int age = sc.nextInt();
+
+        System.out.print("Enter Roll Number: ");
+        int roll = sc.nextInt();
+
+        // Calling superclass method
+        s.getPersonDetails(name, age);
+
+        // Calling subclass method
+        s.getStudentDetails(roll);
+
+        System.out.println("\n===== STUDENT DETAILS =====");
+
+        // Superclass method
+        s.displayPersonDetails();
+
+        // Subclass method
+        s.displayStudentDetails();
+
+        sc.close();
+    }
+}

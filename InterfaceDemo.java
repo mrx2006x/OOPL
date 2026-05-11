@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+// Interface
+interface Shape {
+
+    void calculateArea();
+}
+
+// Class 1 implementing interface
+class Circle implements Shape {
+
+    double radius;
+
+    Circle(double r) {
+        radius = r;
+    }
+
+    public void calculateArea() {
+
+        double area = 3.14 * radius * radius;
+
+        System.out.println("Area of Circle = " + area);
+    }
+}
+
+// Class 2 implementing interface
+class Rectangle implements Shape {
+
+    double length, width;
+
+    Rectangle(double l, double w) {
+        length = l;
+        width = w;
+    }
+
+    public void calculateArea() {
+
+        double area = length * width;
+
+        System.out.println("Area of Rectangle = " + area);
+    }
+}
+
+public class InterfaceDemo {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int choice;
+
+        do {
+
+            System.out.println("\n===== INTERFACE DEMO =====");
+            System.out.println("1. Circle");
+            System.out.println("2. Rectangle");
+            System.out.println("3. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch(choice) {
+
+                case 1:
+
+                    System.out.print("Enter Radius: ");
+                    double radius = sc.nextDouble();
+
+                    // Polymorphism
+                    Shape s1 = new Circle(radius);
+
+                    s1.calculateArea();
+
+                    break;
+
+                case 2:
+
+                    System.out.print("Enter Length: ");
+                    double length = sc.nextDouble();
+
+                    System.out.print("Enter Width: ");
+                    double width = sc.nextDouble();
+
+                    // Polymorphism
+                    Shape s2 = new Rectangle(length, width);
+
+                    s2.calculateArea();
+
+                    break;
+
+                case 3:
+
+                    System.out.println("Exiting Program...");
+                    break;
+
+                default:
+
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while(choice != 3);
+
+        sc.close();
+    }
+}

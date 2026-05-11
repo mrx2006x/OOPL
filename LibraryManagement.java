@@ -1,0 +1,166 @@
+import java.util.Scanner;
+
+class Book {
+
+    int bookId;
+    String bookName;
+    String author;
+    boolean issued;
+
+    // Static field
+    static int totalBooks = 0;
+
+    // Constructor
+    Book(int id, String name, String auth) {
+        bookId = id;
+        bookName = name;
+        author = auth;
+        issued = false;
+
+        totalBooks++;
+    }
+
+    // Method to issue book
+    void issueBook() {
+        if(!issued) {
+            issued = true;
+            System.out.println("Book Issued Successfully.");
+        } else {
+            System.out.println("Book is already issued.");
+        }
+    }
+
+    // Method to return book
+    void returnBook() {
+        if(issued) {
+            issued = false;
+            System.out.println("Book Returned Successfully.");
+        } else {
+            System.out.println("Book was not issued.");
+        }
+    }
+
+    // Method to display book details
+    void displayBook() {
+
+        System.out.println("\nBook ID: " + bookId);
+        System.out.println("Book Name: " + bookName);
+        System.out.println("Author: " + author);
+
+        if(issued) {
+            System.out.println("Status: Issued");
+        } else {
+            System.out.println("Status: Available");
+        }
+    }
+
+    // Static Method
+    static void showTotalBooks() {
+        System.out.println("\nTotal Books Added: " + totalBooks);
+    }
+}
+
+public class LibraryManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Book books[] = new Book[10];
+
+        int count = 0;
+        int choice;
+
+        do {
+
+            System.out.println("\n===== LIBRARY MANAGEMENT SYSTEM =====");
+            System.out.println("1. Add Book");
+            System.out.println("2. Issue Book");
+            System.out.println("3. Return Book");
+            System.out.println("4. View Books");
+            System.out.println("5. Total Book Count");
+            System.out.println("6. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch(choice) {
+
+                case 1:
+
+                    sc.nextLine();
+
+                    System.out.print("Enter Book ID: ");
+                    int id = sc.nextInt();
+
+                    sc.nextLine();
+
+                    System.out.print("Enter Book Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter Author Name: ");
+                    String author = sc.nextLine();
+
+                    books[count] = new Book(id, name, author);
+
+                    count++;
+
+                    System.out.println("Book Added Successfully.");
+                    break;
+
+                case 2:
+
+                    System.out.print("Enter Book ID to Issue: ");
+                    int issueId = sc.nextInt();
+
+                    for(int i = 0; i < count; i++) {
+
+                        if(books[i].bookId == issueId) {
+                            books[i].issueBook();
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.print("Enter Book ID to Return: ");
+                    int returnId = sc.nextInt();
+
+                    for(int i = 0; i < count; i++) {
+
+                        if(books[i].bookId == returnId) {
+                            books[i].returnBook();
+                        }
+                    }
+
+                    break;
+
+                case 4:
+
+                    for(int i = 0; i < count; i++) {
+                        books[i].displayBook();
+                    }
+
+                    break;
+
+                case 5:
+
+                    Book.showTotalBooks();
+                    break;
+
+                case 6:
+
+                    System.out.println("Exiting Program...");
+                    break;
+
+                default:
+
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while(choice != 6);
+
+        sc.close();
+    }
+}
